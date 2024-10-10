@@ -4,39 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= surah.name_simple %> - Hikmah Verse</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: rgba(12, 136, 72, 0.9);
+            color: white;
+            padding: 20px 0;
+        }
+        footer {
+            background-color: rgba(12, 136, 72, 0.8);
+            color: white;
+            padding: 20px 0;
+        }
+        .verse-item {
+            padding: 20px;
+            margin-bottom: 15px;
+            background-color: #ffffff;
+            border-radius: 10px;
+        }
+        .verse-arabic {
+            font-size: 1.3em;
+            color: #333;
+            direction: rtl;
+            text-align: right;
+        }
+        .verse-translation {
+            font-size: 1em;
+            color: #555;
+        }
+        .navigation-buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Hikmah Verse</h1>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/list-surah">Al-Qur'an</a></li>
-                <li><a href="/jadwal-sholat">Jadwal Sholat</a></li>
-            </ul>
+    <header class="text-center">
+        <img src="/logo.png" alt="Logo Hikmah Verse" class="img-fluid" style="max-width: 150px;">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">Hikmah Verse</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/list-surah">Al-Qur'an</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/jadwal-sholat">Jadwal Sholat</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </nav>
     </header>
-    <main>
-        <h2><%= surah.name_arabic %> (<%= surah.name_simple %>)</h2>
+    <main class="container mt-5">
+        <h2 class="text-center mb-4"><%= surah.name_arabic %> (<%= surah.name_simple %>)</h2>
         <p><strong>Jumlah Ayat:</strong> <%= surah.verses_count %></p>
         <p><strong>Tempat Turun:</strong> <%= surah.revelation_place %></p>
         <p><strong>Terjemahan Nama:</strong> <%= surah.translated_name.name %></p>
 
-        <h3>Ayat-ayat dengan Terjemahan:</h3>
-        <ul>
+        <h3 class="mt-4">Ayat-ayat dengan Terjemahan:</h3>
+        <ul class="list-group">
             <% if (verses && translations && verses.length > 0 && translations.length > 0) { %>
                 <% verses.forEach((verse, index) => { %>
-                    <li>
+                    <li class="list-group-item verse-item">
                         <p><strong>Ayat <%= verse.verse_key.split(':')[1] %>:</strong></p>
-                        <p><em>Teks Arab:</em> <%= verse.text_uthmani %></p>
-                        <p><em>Terjemahan:</em> <%= translations[index] ? translations[index].text.replace(/<sup[^>]*>.*?<\/sup>/g, '') : 'Terjemahan tidak tersedia' %></p>
+                        <p class="verse-arabic"><%= verse.text_uthmani %></p>
+                        <p class="verse-translation"><em>Terjemahan:</em> <%= translations[index] ? translations[index].text.replace(/<sup[^>]*>.*?<\/sup>/g, '') : 'Terjemahan tidak tersedia' %></p>
                     </li>
                 <% }); %>
             <% } else { %>
-                <p>Tidak ada ayat atau terjemahan yang tersedia untuk surah ini.</p>
+                <li class="list-group-item">Tidak ada ayat atau terjemahan yang tersedia untuk surah ini.</li>
             <% } %>
         </ul>
+
+        <h3 class="mt-4"></h3>
+        <div class="navigation-buttons">
+            <% if (previousSurah) { %>
+                <a href="/surah/<%= previousSurah %>" class="btn btn-secondary">Surah Sebelumnya</a>
+            <% } %>
+            <% if (nextSurah) { %>
+                <a href="/surah/<%= nextSurah %>" class="btn btn-primary">Surah Berikutnya</a>
+            <% } %>
+        </div>
     </main>
+
+    <footer class="text-center mt-5">
+        <p>&copy; 2024 Hikmah Verse. Semua hak dilindungi.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

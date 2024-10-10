@@ -4,36 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jadwal Sholat - Hikmah Verse</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/styles.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: rgba(12, 136, 72, 0.9);
+            color: white;
+            padding: 20px 0;
+        }
+        footer {
+            background-color: rgba(12, 136, 72, 0.8);
+            color: white;
+            padding: 20px 0;
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin-right: 15px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Hikmah Verse</h1>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/list-surah">Al-Qur'an</a></li>
-                <li><a href="/jadwal-sholat">Jadwal Sholat</a></li>
-            </ul>
+    <header class="text-center">
+        <div class="container d-flex align-items-center justify-content-center">
+            <img src="/logo.png" alt="Logo Hikmah Verse" class="logo"> <!-- Path logo -->
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">Hikmah Verse</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/list-surah">Al-Qur'an</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/jadwal-sholat">Jadwal Sholat</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </nav>
     </header>
-    <main>
-        <h2>Jadwal Sholat di <%= city %></h2>
+    <main class="container mt-5">
+        <h2 class="text-center mb-4">Jadwal Sholat di <%= city %></h2>
 
         <!-- Form untuk memilih kota -->
-        <form action="/jadwal-sholat" method="get">
-            <label for="city">Pilih Kota:</label>
-            <input type="text" id="city" name="city" placeholder="Masukkan nama kota" value="<%= city %>" required>
-            <button type="submit">Lihat Jadwal</button>
+        <form action="/jadwal-sholat" method="get" class="mb-4">
+            <div class="input-group">
+                <input type="text" id="city" name="city" class="form-control" placeholder="Masukkan nama kota" value="<%= city %>" required>
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-success">Lihat Jadwal</button>
+                </div>
+            </div>
         </form>
 
-        <ul>
-            <li><strong>Subuh:</strong> <%= timings.Fajr %></li>
-            <li><strong>Dzuhur:</strong> <%= timings.Dhuhr %></li>
-            <li><strong>Ashar:</strong> <%= timings.Asr %></li>
-            <li><strong>Maghrib:</strong> <%= timings.Maghrib %></li>
-            <li><strong>Isya:</strong> <%= timings.Isha %></li>
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Subuh:</strong> <%= timings.Fajr %></li>
+            <li class="list-group-item"><strong>Dzuhur:</strong> <%= timings.Dhuhr %></li>
+            <li class="list-group-item"><strong>Ashar:</strong> <%= timings.Asr %></li>
+            <li class="list-group-item"><strong>Maghrib:</strong> <%= timings.Maghrib %></li>
+            <li class="list-group-item"><strong>Isya:</strong> <%= timings.Isha %></li>
         </ul>
     </main>
+    <footer class="text-center mt-5">
+        <p>&copy; 2024 Hikmah Verse. Semua hak dilindungi.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

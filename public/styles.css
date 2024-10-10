@@ -1,18 +1,27 @@
+/* Aturan umum untuk body */
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
     margin: 0;
     padding: 0;
+    background-image: url('/islamic-wallpaper.jpg'); /* Ganti dengan path wallpaper islam yang sesuai */
+    background-size: cover; /* Mengatur ukuran wallpaper agar menutupi seluruh latar belakang */
+    background-repeat: no-repeat; /* Menghindari pengulangan gambar */
+    background-position: center; /* Memposisikan gambar di tengah */
+    background-attachment: fixed; /* Menjaga wallpaper tetap di tempat saat scroll */
 }
 
+/* Header */
 header {
-    background-color: #0C8848;
+    background-color: rgba(12, 136, 72, 0.9); /* Warna hijau dengan transparansi */
     color: white;
     padding: 20px;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid #ffd700; /* Menambahkan garis bawah header */
 }
 
+/* Navigasi */
 nav ul {
     list-style: none;
     padding: 0;
@@ -21,39 +30,75 @@ nav ul {
 
 nav ul li {
     display: inline;
-    margin: 0 20px;
+    margin: 0 30px; /* Menambah margin untuk spasi yang lebih baik */
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s;
+    transition: color 0.3s, transform 0.3s; /* Menambahkan transisi untuk transform */
 }
 
 nav ul li a:hover {
     color: #ffd700; /* Warna saat hover */
+    transform: scale(1.1); /* Efek pembesaran saat hover */
 }
 
+/* Judul */
 h2 {
     color: #333;
     margin-top: 20px;
+    font-size: 2em; /* Ukuran font yang lebih besar untuk judul */
 }
 
+/* Bagian utama konten */
 main {
     padding: 20px;
     max-width: 800px;
-    margin: 0 auto;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto; /* Menambah margin vertikal */
+    background-color: rgba(255, 255, 255, 0.9); /* Putih dengan transparansi */
+    border-radius: 10px; /* Radius sudut yang lebih besar */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Bayangan lebih mendalam */
 }
 
+/* Daftar */
 ul {
     margin-top: 10px;
     padding-left: 20px;
 }
 
 li {
-    margin-bottom: 10px;
+    margin-bottom: 15px; /* Menambah jarak antar item daftar */
+    font-size: 1.1em; /* Ukuran font yang sedikit lebih besar */
 }
+
+/* Notifikasi */
+.alert {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+/* Responsif */
+@media (max-width: 600px) {
+    nav ul li {
+        display: block; /* Mengubah tampilan navigasi menjadi vertikal pada layar kecil */
+        margin: 10px 0;
+    }
+
+    main {
+        padding: 15px; /* Mengurangi padding pada layar kecil */
+    }
+
+    h2 {
+        font-size: 1.5em; /* Mengurangi ukuran judul pada layar kecil */
+    }
+}
+
