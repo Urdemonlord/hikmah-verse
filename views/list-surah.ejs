@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Surah</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Daftar Surah</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/surah">Al-Qur'an</a></li>
+                <li><a href="/jadwal-sholat">Jadwal Sholat</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Daftar Surah</h2>
+        <ul>
+            <% surahs.forEach(surah => { %>
+                <li>
+                    <a href="/surah/<%= surah.number %>"><%= surah.name %></a> 
+                    (<%= surah.englishName %>)
+                </li>
+            <% }) %>
+        </ul>
+    </main>
+</body>
+</html>

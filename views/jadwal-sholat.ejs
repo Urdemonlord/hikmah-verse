@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Sholat - Hikmah Verse</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Hikmah Verse</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/list-surah">Al-Qur'an</a></li>
+                <li><a href="/jadwal-sholat">Jadwal Sholat</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Jadwal Sholat di <%= city %></h2>
+
+        <!-- Form untuk memilih kota -->
+        <form action="/jadwal-sholat" method="get">
+            <label for="city">Pilih Kota:</label>
+            <input type="text" id="city" name="city" placeholder="Masukkan nama kota" value="<%= city %>" required>
+            <button type="submit">Lihat Jadwal</button>
+        </form>
+
+        <ul>
+            <li><strong>Subuh:</strong> <%= timings.Fajr %></li>
+            <li><strong>Dzuhur:</strong> <%= timings.Dhuhr %></li>
+            <li><strong>Ashar:</strong> <%= timings.Asr %></li>
+            <li><strong>Maghrib:</strong> <%= timings.Maghrib %></li>
+            <li><strong>Isya:</strong> <%= timings.Isha %></li>
+        </ul>
+    </main>
+</body>
+</html>

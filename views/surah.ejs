@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= surah.name %> - Hikmah Verse</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Hikmah Verse</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/list-surah">Al-Qur'an</a></li>
+                <li><a href="/jadwal-sholat">Jadwal Sholat</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2><%= surah.name %> (<%= surah.number %>)</h2>
+        <p><strong>Jumlah Ayat:</strong> <%= surah.ayahCount %></p>
+        
+        <h3>Ayat-ayat:</h3>
+        <ul>
+            <% surah.ayahs.forEach((ayah) => { %>
+                <li>
+                    <p><strong>Ayat <%= ayah.number %>:</strong> <%= ayah.text %></p>
+                    
+                    <% if (translation.ayahs[ayah.number - 1] && translation.ayahs[ayah.number - 1].text) { %>
+                        <p><em>Terjemahan:</em> <%= translation.ayahs[ayah.number - 1].text %></p>
+                    <% } else { %>
+                        <p><em>Terjemahan tidak tersedia</em></p>
+                    <% } %>
+                </li>
+            <% }); %>
+        </ul>
+        
+    </main>
+</body>
+</html>
