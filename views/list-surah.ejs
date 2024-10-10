@@ -12,7 +12,7 @@
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/surah">Al-Qur'an</a></li>
+                <li><a href="/list-surah">Al-Qur'an</a></li>
                 <li><a href="/jadwal-sholat">Jadwal Sholat</a></li>
             </ul>
         </nav>
@@ -22,8 +22,8 @@
         <ul>
             <% surahs.forEach(surah => { %>
                 <li>
-                    <a href="/surah/<%= surah.number %>"><%= surah.name %></a> 
-                    (<%= surah.englishName %>)
+                    <a href="/surah/<%= surah.id %>"><%= surah.name_arabic %></a> 
+                    (<%= surah.name_simple %>)
                 </li>
             <% }) %>
         </ul>

@@ -23,9 +23,9 @@ app.get('/', (req, res) => {
 // Route untuk menampilkan daftar surah
 app.get('/list-surah', async (req, res) => {
     try {
-        // Fetch daftar surah dari API
-        const response = await axios.get('http://api.alquran.cloud/v1/surah', axiosConfig);
-        const surahs = response.data.data;
+        // Fetch daftar surah dari Quran.com API
+        const response = await axios.get('https://api.quran.com/api/v4/chapters');
+        const surahs = response.data.chapters;
         
         // Render halaman daftar surah
         res.render('list-surah', { surahs });
@@ -35,34 +35,33 @@ app.get('/list-surah', async (req, res) => {
     }
 });
 
-// Route untuk menampilkan surah dengan terjemahan
+
 app.get('/surah/:number', async (req, res) => {
     const surahNumber = req.params.number;
 
     try {
-        console.log(`Fetching surah number: ${surahNumber}`);
-        
-        // Fetch surah dari API
-        const response = await axios.get(`http://api.alquran.cloud/v1/surah/${surahNumber}`, axiosConfig);
-        console.log('Surah fetched successfully');
+        // Fetch surah dari Quran.com API
+        const surahResponse = await axios.get(`https://api.quran.com/api/v4/chapters/${surahNumber}`);
+        const surah = surahResponse.data.chapter;
 
-        // Fetch terjemahan surah dari API
-        const translationResponse = await axios.get(`http://api.alquran.cloud/v1/surah/${surahNumber}/id.indonesian`, axiosConfig);
-        const surah = response.data.data;
-        const translation = translationResponse.data.data;
+        // Fetch teks Arab dan terjemahan surah
+        const versesResponse = await axios.get(`https://api.quran.com/api/v4/quran/verses/uthmani?chapter_number=${surahNumber}`);
+        const translationResponse = await axios.get(`https://api.quran.com/api/v4/quran/translations/33?chapter_number=${surahNumber}`);
 
-        // Cek jika data terjemahan ada, jika tidak kosongkan
-        if (!translation || !translation.ayahs) {
-            translation.ayahs = [];
-        }
+        const verses = versesResponse.data.verses; // Teks Arab
+        const translations = translationResponse.data.translations; // Terjemahan
 
         // Render halaman surah
-        res.render('surah', { surah, translation });
+        res.render('surah', { surah, verses, translations });
     } catch (error) {
-        console.error('Error fetching Surah data:', error.response?.data || error.message);
-        res.status(500).send('Error fetching Surah data: ' + (error.response?.data?.message || error.message));
+        console.error('Error fetching Surah data:', error.message);
+        res.status(500).send('Error fetching Surah data');
     }
 });
+
+
+
+
 
 // Route untuk menampilkan jadwal sholat dengan kota yang dipilih
 app.get('/jadwal-sholat', async (req, res) => {
