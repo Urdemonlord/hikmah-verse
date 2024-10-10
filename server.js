@@ -7,7 +7,9 @@ const PORT = process.env.PORT || 3000;
 // Set view engine untuk EJS
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-app.use(express.static('public'));
+
+// Middleware untuk melayani file statis dari folder 'public'
+app.use(express.static(path.join(__dirname, 'public'))); // Menggunakan path.join untuk folder public
 
 // Konfigurasi axios dengan timeout dan headers
 const axiosConfig = {
