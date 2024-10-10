@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 3000;
 
 // Set view engine untuk EJS
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 app.use(express.static('public'));
 
 // Konfigurasi axios dengan timeout dan headers
